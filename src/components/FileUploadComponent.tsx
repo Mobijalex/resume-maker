@@ -284,14 +284,14 @@ const FileUploadComponent: React.FC<FileUploadComponentProps> = ({
       {/* Drop zone */}
       <div
         className={`
-          dropzone-accessible focus-ring
+          dropzone-accessible focus-ring rounded-2xl transition-all duration-300
           ${
             isDragOver
-              ? "border-blue-500 bg-blue-50"
-              : "border-gray-300 hover:border-gray-400 hover:bg-gray-50"
+              ? "border-2 border-dashed border-blue-500 bg-blue-50/50 shadow-lg transform scale-105"
+              : "border-2 border-dashed border-gray-300 hover:border-gray-400 hover:bg-gray-50/50 shadow-sm hover:shadow-md"
           }
-          ${isUploading ? "opacity-50 cursor-not-allowed" : ""}
-          ${fileErrors.length > 0 ? "border-red-300 bg-red-50" : ""}
+          ${isUploading ? "opacity-70 cursor-not-allowed" : ""}
+          ${fileErrors.length > 0 ? "border-2 border-dashed border-red-400 bg-red-50/50" : ""}
         `}
         onDragEnter={
           fileUploadSupport.method === "drag-drop" ? handleDragEnter : undefined
@@ -326,37 +326,40 @@ const FileUploadComponent: React.FC<FileUploadComponentProps> = ({
         aria-disabled={isUploading}
       >
         {isUploading ? (
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center py-10">
             <div
               className="loading-spinner mb-4"
               aria-hidden="false"
               role="status"
               aria-label="Processing file"
             ></div>
-            <p className="text-gray-600" aria-live="polite">
+            <p className="text-gray-600 text-lg" aria-live="polite">
               Processing file...
             </p>
+            <p className="text-gray-500 text-sm mt-2">Please wait</p>
           </div>
         ) : (
-          <div className="flex flex-col items-center">
-            <svg
-              className="w-12 h-12 text-gray-400 mb-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-              />
-            </svg>
-            <h3 className="text-lg font-medium text-gray-900 mb-2">
+          <div className="flex flex-col items-center py-10 px-4">
+            <div className="bg-gray-100 p-4 rounded-full mb-6 transition-all duration-300 group-hover:bg-gray-200">
+              <svg
+                className="w-10 h-10 text-gray-500 group-hover:text-gray-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+                />
+              </svg>
+            </div>
+            <h3 className="text-xl font-semibold text-gray-900 mb-3">
               Upload your resume
             </h3>
-            <p className="text-gray-600 mb-4" id="file-upload-description">
+            <p className="text-gray-600 mb-3 text-center" id="file-upload-description">
               {fileUploadSupport.method === "drag-drop"
                 ? "Drag and drop your Markdown file here, or click to browse"
                 : "Click to browse and select your Markdown file"}
@@ -364,6 +367,9 @@ const FileUploadComponent: React.FC<FileUploadComponentProps> = ({
             <p className="text-sm text-gray-500" id="file-upload-requirements">
               Supports .md files up to 5MB
             </p>
+            <div className="mt-4 px-4 py-2 bg-blue-50 text-blue-700 text-xs font-medium rounded-full">
+              .MD files only
+            </div>
           </div>
         )}
       </div>

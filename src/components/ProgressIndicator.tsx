@@ -27,27 +27,30 @@ export function ProgressIndicator({ currentStep }: ProgressIndicatorProps) {
       data-testid="progress-indicator"
     >
       <ol
-        className="flex items-center justify-between"
+        className="flex items-center justify-between relative"
         aria-label="Progress steps"
       >
+        {/* Progress line background */}
+        <div className="absolute top-5 left-0 right-0 h-1 bg-gray-200/50 z-0"></div>
+        
         {steps.map((step, index) => {
           const isCompleted = index < currentStepIndex;
           const isCurrent = index === currentStepIndex;
           const isUpcoming = index > currentStepIndex;
 
           return (
-            <li key={step.key} className="flex items-center progress-step">
+            <li key={step.key} className="flex items-center progress-step relative z-10">
               {/* Step circle */}
               <div className="flex flex-col items-center">
                 <div
                   className={`
-                    w-10 h-10 rounded-full flex items-center justify-center text-sm font-medium transition-colors duration-200
+                    w-12 h-12 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 shadow-md
                     ${
                       isCompleted
-                        ? "bg-primary-600 text-white"
+                        ? "bg-gradient-to-r from-blue-600 to-blue-700 text-white scale-110 shadow-lg"
                         : isCurrent
-                        ? "bg-primary-100 text-primary-600 border-2 border-primary-600"
-                        : "bg-gray-200 text-gray-500"
+                        ? "bg-gradient-to-r from-blue-100 to-blue-200 text-blue-700 border-4 border-blue-500 scale-110 shadow-lg"
+                        : "bg-gradient-to-r from-gray-100 to-gray-200 text-gray-500 border-2 border-gray-300"
                     }
                   `}
                   aria-current={isCurrent ? "step" : undefined}
@@ -62,7 +65,7 @@ export function ProgressIndicator({ currentStep }: ProgressIndicatorProps) {
                 >
                   {isCompleted ? (
                     <svg
-                      className="w-5 h-5"
+                      className="w-6 h-6"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                       aria-hidden="true"
@@ -79,13 +82,13 @@ export function ProgressIndicator({ currentStep }: ProgressIndicatorProps) {
                 </div>
 
                 {/* Step label and description */}
-                <div className="mt-2 text-center">
+                <div className="mt-3 text-center">
                   <div
                     className={`
-                      text-sm font-medium
+                      text-sm font-semibold
                       ${
                         isCurrent
-                          ? "text-primary-600"
+                          ? "text-blue-700"
                           : isCompleted
                           ? "text-gray-900"
                           : "text-gray-500"
@@ -96,7 +99,7 @@ export function ProgressIndicator({ currentStep }: ProgressIndicatorProps) {
                     {step.label}
                   </div>
                   <div
-                    className="text-xs text-gray-500 mt-1 max-w-20"
+                    className="text-xs text-gray-500 mt-1 max-w-24 truncate"
                     id={`step-${index}-description`}
                     aria-describedby={`step-${index}-label`}
                   >
@@ -109,8 +112,8 @@ export function ProgressIndicator({ currentStep }: ProgressIndicatorProps) {
               {index < steps.length - 1 && (
                 <div
                   className={`
-                    flex-1 h-0.5 mx-4 transition-colors duration-200
-                    ${isCompleted ? "bg-primary-600" : "bg-gray-200"}
+                    flex-1 h-1 transition-all duration-500 -mt-6
+                    ${isCompleted ? "bg-gradient-to-r from-blue-600 to-blue-700" : "bg-gray-200"}
                   `}
                   aria-hidden="true"
                 />

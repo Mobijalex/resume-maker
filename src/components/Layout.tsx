@@ -18,36 +18,44 @@ export function Layout({ children }: LayoutProps) {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
       {/* Header */}
       <header
-        className="bg-white shadow-sm border-b border-gray-200"
+        className="bg-gradient-to-r from-blue-600 to-blue-800 shadow-xl text-white"
         role="banner"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-6">
             <div className="flex items-center">
-              <h1 className="text-2xl font-bold text-gray-900">
-                MD Resume Converter
-              </h1>
+              <div className="bg-white/20 p-2 rounded-xl mr-4">
+                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+              </div>
+              <div>
+                <h1 className="text-3xl font-bold">
+                  MD Resume Converter
+                </h1>
+                <p className="text-blue-100 text-sm mt-1">Transform your Markdown into ATS-friendly PDFs</p>
+              </div>
               <span
-                className="ml-3 px-2 py-1 text-xs font-medium bg-primary-100 text-primary-800 rounded-full"
+                className="ml-4 px-3 py-1 text-xs font-semibold bg-white/20 text-white rounded-full backdrop-blur-sm"
                 aria-label="This application creates ATS-friendly resumes"
               >
-                ATS-Friendly
+                ATS-FRIENDLY
               </span>
             </div>
 
             {/* Help button */}
             <div className="flex items-center space-x-4">
               <button
-                className="btn-accessible btn-secondary p-2"
+                className="btn-accessible bg-white/20 hover:bg-white/30 text-white p-3 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg"
                 onClick={handleHelpClick}
                 aria-label="Get help information about using this application"
                 title="Help"
               >
                 <svg
-                  className="w-5 h-5"
+                  className="w-6 h-6"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -69,7 +77,7 @@ export function Layout({ children }: LayoutProps) {
 
       {/* Progress Indicator */}
       <nav
-        className="bg-white border-b border-gray-200"
+        className="bg-white/80 backdrop-blur-sm border-b border-gray-200 shadow-sm"
         aria-label="Resume creation progress"
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -80,7 +88,7 @@ export function Layout({ children }: LayoutProps) {
       {/* Main Content */}
       <main
         id="main-content"
-        className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8"
+        className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10"
         role="main"
         aria-label="Resume converter main content"
       >
@@ -152,15 +160,27 @@ export function Layout({ children }: LayoutProps) {
 
       {/* Footer */}
       <footer
-        className="bg-white border-t border-gray-200 mt-12"
+        className="bg-gradient-to-r from-blue-50 to-indigo-50 border-t border-blue-100 mt-12"
         role="contentinfo"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="text-center text-sm text-gray-500">
-            <p>
-              Transform your Markdown resume into an ATS-friendly PDF •{" "}
-              <span className="ml-1 font-medium">Privacy-focused</span> •{" "}
-              <span className="ml-1 font-medium">Client-side processing</span>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="text-center">
+            <div className="flex justify-center space-x-6 mb-4">
+              <div className="flex items-center text-blue-600">
+                <svg className="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+                </svg>
+                <span className="text-sm font-medium">Privacy-focused</span>
+              </div>
+              <div className="flex items-center text-blue-600">
+                <svg className="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+                <span className="text-sm font-medium">Client-side processing</span>
+              </div>
+            </div>
+            <p className="text-gray-600 text-sm">
+              Transform your Markdown resume into an ATS-friendly PDF
             </p>
           </div>
         </div>

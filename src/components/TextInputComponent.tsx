@@ -240,51 +240,66 @@ const TextInputComponent: React.FC<TextInputComponentProps> = ({
       {/* Format hints */}
       {showFormatHints && (
         <div
-          className="mb-4 p-4 bg-blue-50 border border-blue-200 rounded-lg"
+          className="mb-6 p-5 bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200/50 rounded-2xl shadow-sm"
           id="format-hints"
           role="region"
           aria-labelledby="format-hints-heading"
         >
-          <h4
-            className="font-medium text-blue-900 mb-2"
-            id="format-hints-heading"
-          >
-            Markdown Format Guidelines:
-          </h4>
-          <ul className="text-sm text-blue-800 space-y-1" role="list">
-            <li role="listitem">
-              • Use <code className="bg-blue-100 px-1 rounded"># Name</code> for
-              your name as the main header
-            </li>
-            <li role="listitem">
-              • Use{" "}
-              <code className="bg-blue-100 px-1 rounded">## Section Name</code>{" "}
-              for major sections (Experience, Education, etc.)
-            </li>
-            <li role="listitem">
-              • Use{" "}
-              <code className="bg-blue-100 px-1 rounded">### Job Title</code>{" "}
-              for subsections like job positions
-            </li>
-            <li role="listitem">
-              • Use{" "}
-              <code className="bg-blue-100 px-1 rounded">**Bold Text**</code>{" "}
-              for emphasis (company names, dates)
-            </li>
-            <li role="listitem">
-              • Use{" "}
-              <code className="bg-blue-100 px-1 rounded">*Italic Text*</code>{" "}
-              for job dates or locations
-            </li>
-            <li role="listitem">
-              • Use{" "}
-              <code className="bg-blue-100 px-1 rounded">- Bullet point</code>{" "}
-              for lists and accomplishments
-            </li>
-            <li role="listitem">
-              • Include contact information: email, phone, location, LinkedIn
-            </li>
-          </ul>
+          <div className="flex items-start">
+            <div className="flex-shrink-0 mt-1">
+              <svg className="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div className="ml-3">
+              <h4
+                className="font-semibold text-blue-900 mb-3"
+                id="format-hints-heading"
+              >
+                Markdown Format Guidelines:
+              </h4>
+              <ul className="text-sm text-blue-800 space-y-2" role="list">
+                <li className="flex" role="listitem">
+                  <span className="mr-2">•</span>
+                  <span>Use <code className="bg-blue-100/50 px-2 py-1 rounded-md text-xs font-mono"># Name</code> for your name as the main header</span>
+                </li>
+                <li className="flex" role="listitem">
+                  <span className="mr-2">•</span>
+                  <span>Use{" "}
+                  <code className="bg-blue-100/50 px-2 py-1 rounded-md text-xs font-mono">## Section Name</code>{" "}
+                  for major sections (Experience, Education, etc.)</span>
+                </li>
+                <li className="flex" role="listitem">
+                  <span className="mr-2">•</span>
+                  <span>Use{" "}
+                  <code className="bg-blue-100/50 px-2 py-1 rounded-md text-xs font-mono">### Job Title</code>{" "}
+                  for subsections like job positions</span>
+                </li>
+                <li className="flex" role="listitem">
+                  <span className="mr-2">•</span>
+                  <span>Use{" "}
+                  <code className="bg-blue-100/50 px-2 py-1 rounded-md text-xs font-mono">**Bold Text**</code>{" "}
+                  for emphasis (company names, dates)</span>
+                </li>
+                <li className="flex" role="listitem">
+                  <span className="mr-2">•</span>
+                  <span>Use{" "}
+                  <code className="bg-blue-100/50 px-2 py-1 rounded-md text-xs font-mono">*Italic Text*</code>{" "}
+                  for job dates or locations</span>
+                </li>
+                <li className="flex" role="listitem">
+                  <span className="mr-2">•</span>
+                  <span>Use{" "}
+                  <code className="bg-blue-100/50 px-2 py-1 rounded-md text-xs font-mono">- Bullet point</code>{" "}
+                  for lists and accomplishments</span>
+                </li>
+                <li className="flex" role="listitem">
+                  <span className="mr-2">•</span>
+                  <span>Include contact information: email, phone, location, LinkedIn</span>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       )}
 
@@ -300,9 +315,10 @@ const TextInputComponent: React.FC<TextInputComponentProps> = ({
           onChange={handleTextChange}
           placeholder={placeholder}
           className={`
-            input-accessible w-full min-h-[200px] p-4 border rounded-lg resize-none font-mono text-sm
-            ${hasErrors ? "border-red-300 bg-red-50" : "border-gray-300"}
+            input-accessible w-full min-h-[250px] p-5 border rounded-2xl resize-none font-mono text-sm
+            ${hasErrors ? "border-red-400 bg-red-50/50" : "border-gray-300 focus:border-blue-500"}
             ${isValidating ? "opacity-75" : ""}
+            transition-all duration-300 shadow-sm focus:shadow-md
           `}
           data-testid="markdown-textarea"
           aria-labelledby="text-input-heading"
@@ -315,7 +331,7 @@ const TextInputComponent: React.FC<TextInputComponentProps> = ({
 
         {/* Validation indicator */}
         {isValidating && (
-          <div className="absolute top-2 right-2" aria-hidden="true">
+          <div className="absolute top-3 right-3" aria-hidden="true">
             <div
               className="loading-spinner"
               role="status"
@@ -326,27 +342,29 @@ const TextInputComponent: React.FC<TextInputComponentProps> = ({
       </div>
 
       {/* Character count and status */}
-      <div className="flex justify-between items-center mt-2 text-sm text-gray-500">
-        <div id="character-count" aria-live="polite">
-          {state.markdownContent.length} characters
+      <div className="flex justify-between items-center mt-3">
+        <div id="character-count" className="text-sm text-gray-600 bg-gray-100 px-3 py-1.5 rounded-full">
+          <span className="font-medium">{state.markdownContent.length}</span> characters
           {state.markdownContent.length > 0 && (
             <span className="ml-2">
-              • {Math.ceil(state.markdownContent.length / 500)} estimated pages
+              • <span className="font-medium">{Math.ceil(state.markdownContent.length / 500)}</span> estimated pages
             </span>
           )}
         </div>
         {hasContent && !isValidating && (
           <div
             id="validation-status"
-            className={`flex items-center ${
-              hasErrors ? "text-red-600" : "text-green-600"
+            className={`flex items-center px-3 py-1.5 rounded-full text-sm font-medium ${
+              hasErrors 
+                ? "bg-red-100 text-red-700" 
+                : "bg-green-100 text-green-700"
             }`}
             aria-live="polite"
           >
             {hasErrors ? (
               <>
                 <svg
-                  className="w-4 h-4 mr-1"
+                  className="w-4 h-4 mr-1.5"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   aria-hidden="true"
@@ -362,7 +380,7 @@ const TextInputComponent: React.FC<TextInputComponentProps> = ({
             ) : (
               <>
                 <svg
-                  className="w-4 h-4 mr-1"
+                  className="w-4 h-4 mr-1.5"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   aria-hidden="true"

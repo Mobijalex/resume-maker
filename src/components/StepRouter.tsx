@@ -93,51 +93,6 @@ export function StepRouter() {
       <Suspense fallback={<LoadingFallback message="Loading step..." />}>
         {renderCurrentStep()}
       </Suspense>
-
-      {/* Navigation buttons for testing - will be replaced by step-specific navigation */}
-      <div className="border-t border-gray-200 px-8 py-6">
-        <div className="flex justify-between">
-          <button
-            onClick={() => {
-              const steps: AppStep[] = [
-                "upload",
-                "parse",
-                "template",
-                "preview",
-                "download",
-              ];
-              const currentIndex = steps.indexOf(state.currentStep);
-              if (currentIndex > 0) {
-                handleStepNavigation(steps[currentIndex - 1]);
-              }
-            }}
-            disabled={state.currentStep === "upload"}
-            className="btn-secondary disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            Previous
-          </button>
-
-          <button
-            onClick={() => {
-              const steps: AppStep[] = [
-                "upload",
-                "parse",
-                "template",
-                "preview",
-                "download",
-              ];
-              const currentIndex = steps.indexOf(state.currentStep);
-              if (currentIndex < steps.length - 1) {
-                handleStepNavigation(steps[currentIndex + 1]);
-              }
-            }}
-            disabled={state.currentStep === "download"}
-            className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            Next
-          </button>
-        </div>
-      </div>
     </div>
   );
 }
