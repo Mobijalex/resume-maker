@@ -93,57 +93,6 @@ export function StepRouter() {
       <Suspense fallback={<LoadingFallback message="Loading step..." />}>
         {renderCurrentStep()}
       </Suspense>
-
-      {/* Navigation buttons for testing - will be replaced by step-specific navigation */}
-      <div className="border-t border-gray-200/30 px-8 py-8 bg-white/30 backdrop-blur-sm">
-        <div className="flex justify-between">
-          <button
-            onClick={() => {
-              const steps: AppStep[] = [
-                "upload",
-                "parse",
-                "template",
-                "preview",
-                "download",
-              ];
-              const currentIndex = steps.indexOf(state.currentStep);
-              if (currentIndex > 0) {
-                handleStepNavigation(steps[currentIndex - 1]);
-              }
-            }}
-            disabled={state.currentStep === "upload"}
-            className="btn-secondary py-3 px-6 disabled:opacity-40 disabled:cursor-not-allowed flex items-center"
-          >
-            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-            Previous
-          </button>
-
-          <button
-            onClick={() => {
-              const steps: AppStep[] = [
-                "upload",
-                "parse",
-                "template",
-                "preview",
-                "download",
-              ];
-              const currentIndex = steps.indexOf(state.currentStep);
-              if (currentIndex < steps.length - 1) {
-                handleStepNavigation(steps[currentIndex + 1]);
-              }
-            }}
-            disabled={state.currentStep === "download"}
-            className="btn-primary py-3 px-6 disabled:opacity-40 disabled:cursor-not-allowed flex items-center"
-          >
-            Next
-            <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
-        </div>
-      </div>
     </div>
   );
 }
